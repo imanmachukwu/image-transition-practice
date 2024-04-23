@@ -1,7 +1,17 @@
 const leaveAnimation = (container) => {
     const card = container.querySelector(".card");
+    const cards = [...container.querySelectorAll(".card")];
 
-    function getOffset(el) {
+    const cardPositions = Array.from(cards).map(card => {
+        const rect = card.getBoundingClientRect();
+        return {
+            left: rect.left + window.scrollX,
+            top: rect.top + window.scrollY
+        };
+    });
+    console.log(cardPositions);
+
+/*     function getOffset(el) {
         const rect = el.getBoundingClientRect();
         return {
           left: rect.left + window.scrollX,
@@ -11,7 +21,7 @@ const leaveAnimation = (container) => {
     const xPosition = getOffset(card).left;
     console.log(xPosition)
     const yPosition = getOffset(card).top;
-    console.log(yPosition)
+    console.log(yPosition) */
 
     const tl = gsap.timeline({
         defaults: {
